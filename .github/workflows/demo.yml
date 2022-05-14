@@ -4,24 +4,35 @@ name: demo-gha-pipeline
 
 on:
   workflow_dispatch:
+   inputs:
+     action:
+        type: choice
+        description: python code build
+        options:
+        - devl
+        - prod
 
 jobs:
-  get-secret-devl:
+  pyrhon-proj:
     runs-on: ubuntu-latest
+    if: ${{ github.events.inputs.action == 'devl' }}
     environment: Developement
     steps:
       - uses: actions/checkout@v3
-      - name: echo get secret devl  
-        run: |
-          echo ${{ secrets.USERNAME }}
-          echo ${{ secrets.PASSWORD }}
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+          architecture: 'x64' 
+      - run: python3 demo.py
         
   get-secret-prod:
     runs-on: ubuntu-latest
     environment: Production
+    if: ${{ github.events.inputs.action == 'prod' }}
     steps:
-      - name: echo get secret prod 
-        run: |
-          echo ${{ secrets.USERNAME }}
-          echo ${{ secrets.PASSWORD }}
+      - uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+          architecture: 'x64' 
+      - run: python3 demo.py
  
