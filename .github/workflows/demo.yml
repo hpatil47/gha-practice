@@ -21,11 +21,11 @@ jobs:
           python-version: '3.9'
           architecture: 'x64'
       - run: |
-          echo "$Name"
+          echo "run on $ACTION"
           python3 --version
           python3 demo.py
         env:
-          Name: 'Demo'
+          ACTION: ${{ github.event.inputs.action }}
 
    
   python-prod-build:
