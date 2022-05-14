@@ -17,12 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
+      - name: build python code in devl
         with:
           python-version: '3.9'
-          architecture: 'x64' 
-          Name: 'Harshal'
+          architecture: 'x64'
+        env: 
+          NAME: 'demo'
       - run: |
-          echo $Name
+          echo $NAME
           python3 demo.py
 
    
