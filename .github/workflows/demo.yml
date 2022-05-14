@@ -4,6 +4,14 @@ name: demo-gha-pipeline
 
 on:
   workflow_dispatch:
+    inputs:
+        action:
+          type: choice
+          description: action to take
+          options: 
+          - build
+          - test
+          - deploy
 
 jobs:
   build:
@@ -11,13 +19,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: echo build 
-        run: echo "run build"
+        run: echo run ${{ github.event.inputs.action }}
         
   test:
     runs-on: ubuntu-latest
     steps:
       - name: echo test
-        run: echo "run test"
+        run: echo run ${{ github.event.inputs.action }}
     needs: build
    
   
@@ -25,5 +33,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: echo deploy
-        run: echo "run deploy"
+        run: echo run ${{ github.event.inputs.action }}
     needs: test
