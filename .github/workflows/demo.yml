@@ -4,37 +4,56 @@ name: demo-gha-pipeline
 
 on:
   workflow_dispatch:
-    inputs:
-        action:
-          type: choice
-          description: action to take
-          options: 
-          - build
-          - test
-          - deploy
 
 jobs:
-  build:
+  build-devl:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.action == 'build' }}
+    environment: Developement
     steps:
       - uses: actions/checkout@v3
       - name: echo build 
-        run: echo run ${{ github.event.inputs.action }}
+        run: echo run build devl
         
-  test:
+  test-devl:
     runs-on: ubuntu-latest
     if: ${{ github.event.inputs.action == 'test' }}
+    environment: Developement
     steps:
       - name: echo test
-        run: echo run ${{ github.event.inputs.action }}
-    needs: build
+        run: echo run test devl
+    needs: build-devl
    
   
-  deploy:
+  deploy-devl:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.action == 'deploy' }}
+    environment: Developement
     steps:
       - name: echo deploy
-        run: echo run ${{ github.event.inputs.action }}
-    needs: test
+        run: echo run deploy devl
+    needs: test-devl
+  
+  build-prod:
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - uses: actions/checkout@v3
+      - name: echo build 
+        run: echo run build prod
+        
+  test-prod:
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - name: echo test
+        run: echo run test prod
+    needs: build-prod
+   
+  deploy-prod:
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - name: echo deploy
+        run: echo run deploy prod
+    needs: test-prod
+    
+
