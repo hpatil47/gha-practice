@@ -4,19 +4,18 @@ name: demo-gha-pipeline
 
 on:
   workflow_dispatch:
-   inputs:
-     action:
-        type: choice
-        description: python code build
-        options:
-        - devl
-        - prod
+    inputs:
+        action:
+          type: choice
+          description: action to take
+          options: 
+          - devl
+          - prod
 
 jobs:
-  python-devl:
+  python-devl-build:
     runs-on: ubuntu-latest
-    if: ${{ github.events.inputs.action == 'devl' }}
-    environment: Developement
+    if: ${{ github.event.inputs.action == 'devl' }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
@@ -26,17 +25,17 @@ jobs:
       - run: |
           python3 --version
           python3 demo.py
-        
-  python-prod:
-    runs-on: ubuntu-latest
-    environment: Production
-    if: ${{ github.events.inputs.action == 'prod' }}
-    steps:
-      - uses: actions/setup-python@v3
-        with:
-          python-version: '3.9'
-          architecture: 'x64' 
-      - run: |
-          python3 --version
-          python3 demo.py
+
+#   python-prod:
+#     runs-on: ubuntu-latest
+#     environment: Production
+#     if: ${{ github.events.inputs.action == 'prod' }}
+#     steps:
+#       - uses: actions/setup-python@v3
+#         with:
+#           python-version: '3.9'
+#           architecture: 'x64' 
+#       - run: |
+#           python3 --version
+#           python3 demo.py
  
