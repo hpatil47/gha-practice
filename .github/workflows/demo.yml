@@ -16,7 +16,7 @@ jobs:
   python-devl:
     runs-on: ubuntu-latest
     if: ${{ github.events.inputs.action == 'devl' }}
-#     environment: Developement
+    environment: Developement
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
@@ -27,7 +27,7 @@ jobs:
         
   python-prod:
     runs-on: ubuntu-latest
-#     environment: Production
+    environment: Production
     if: ${{ github.events.inputs.action == 'prod' }}
     steps:
       - uses: actions/setup-python@v3
