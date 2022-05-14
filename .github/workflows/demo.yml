@@ -23,7 +23,7 @@ jobs:
         env:
           NAME: 'demo'
       - run: |
-            echo $NAME
+            echo ${{ env.NAME }}
             python3 demo.py
 
    
