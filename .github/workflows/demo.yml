@@ -13,7 +13,7 @@ on:
         - prod
 
 jobs:
-  pyrhon-proj:
+  pyhon-devl:
     runs-on: ubuntu-latest
     if: ${{ github.events.inputs.action == 'devl' }}
     environment: Developement
@@ -25,7 +25,7 @@ jobs:
           architecture: 'x64' 
       - run: python3 demo.py
         
-  get-secret-prod:
+  pyhon-prod:
     runs-on: ubuntu-latest
     environment: Production
     if: ${{ github.events.inputs.action == 'prod' }}
@@ -35,4 +35,5 @@ jobs:
           python-version: '3.9'
           architecture: 'x64' 
       - run: python3 demo.py
+    needs: pyhon-devl
  
