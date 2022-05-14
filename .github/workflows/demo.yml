@@ -16,6 +16,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.action == 'build' }}
     steps:
       - uses: actions/checkout@v3
       - name: echo build 
@@ -23,6 +24,7 @@ jobs:
         
   test:
     runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.action == 'test' }}
     steps:
       - name: echo test
         run: echo run ${{ github.event.inputs.action }}
@@ -31,6 +33,7 @@ jobs:
   
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.action == 'deploy' }}
     steps:
       - name: echo deploy
         run: echo run ${{ github.event.inputs.action }}
