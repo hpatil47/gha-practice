@@ -18,6 +18,7 @@ jobs:
     steps:
       - name: echo test
         run: echo "run test"
+    needs: build
    
   
   deploy:
@@ -25,3 +26,4 @@ jobs:
     steps:
       - name: echo deploy
         run: echo "run deploy"
+    needs: test
