@@ -20,20 +20,21 @@ jobs:
         with:
           python-version: '3.9'
           architecture: 'x64' 
+          Name: 'Harshal'
       - run: |
-          python3 --version
+          echo $Name
           python3 demo.py
 
    
-  python-prod-build:
-    runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.action == 'prod' }}
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
-        with:
-          python-version: '3.9'
-          architecture: 'x64' 
-      - run: |
-          python3 --version
-          python3 demo.py
+#   python-prod-build:
+#     runs-on: ubuntu-latest
+#     if: ${{ github.event.inputs.action == 'prod' }}
+#     steps:
+#       - uses: actions/checkout@v3
+#       - uses: actions/setup-python@v3
+#         with:
+#           python-version: '3.9'
+#           architecture: 'x64' 
+#       - run: |
+#           python3 --version
+#           python3 demo.py
