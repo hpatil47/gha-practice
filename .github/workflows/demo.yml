@@ -6,53 +6,22 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-devl:
+  get-secret-devl:
     runs-on: ubuntu-latest
     environment: Developement
     steps:
       - uses: actions/checkout@v3
-      - name: echo build 
-        run: echo run build devl
+      - name: echo get secret devl  
+        run: |
+          echo ${{ secrets.USERNAME }}
+          echo ${{ secrets.PASSWORD }}
         
-  test-devl:
-    runs-on: ubuntu-latest
-    environment: Developement
-    steps:
-      - name: echo test
-        run: echo run test devl
-    needs: build-devl
-   
-  
-  deploy-devl:
-    runs-on: ubuntu-latest
-    environment: Developement
-    steps:
-      - name: echo deploy
-        run: echo run deploy devl
-    needs: test-devl
-  
-  build-prod:
+  get-secret-prod:
     runs-on: ubuntu-latest
     environment: Production
     steps:
-      - uses: actions/checkout@v3
-      - name: echo build 
-        run: echo run build prod
-        
-  test-prod:
-    runs-on: ubuntu-latest
-    environment: Production
-    steps:
-      - name: echo test
-        run: echo run test prod
-    needs: build-prod
-   
-  deploy-prod:
-    runs-on: ubuntu-latest
-    environment: Production
-    steps:
-      - name: echo deploy
-        run: echo run deploy prod
-    needs: test-prod
-    
-
+      - name: echo get secret prod 
+        run: |
+          echo ${{ secrets.USERNAME }}
+          echo ${{ secrets.PASSWORD }}
+ 
