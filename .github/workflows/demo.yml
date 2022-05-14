@@ -1,0 +1,27 @@
+# This is a basic workflow to help you get started with Actions
+
+name: demo-gha-pipeline
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: echo build 
+        run: echo "run build"
+        
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo test
+        run: echo "run test"
+   
+  
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo deploy
+        run: echo "run deploy"
