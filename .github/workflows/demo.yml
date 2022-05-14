@@ -16,7 +16,6 @@ jobs:
         
   test-devl:
     runs-on: ubuntu-latest
-    if: ${{ github.event.inputs.action == 'test' }}
     environment: Developement
     steps:
       - name: echo test
