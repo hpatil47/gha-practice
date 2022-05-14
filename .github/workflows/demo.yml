@@ -9,8 +9,6 @@ on:
           options: 
           - devl
           - prod
-env:
-  Name: Demo
 
 jobs:
   python-devl-build:
@@ -26,6 +24,8 @@ jobs:
           echo "$Name"
           python3 --version
           python3 demo.py
+        env:
+          Name: 'Demo'
 
    
   python-prod-build:
