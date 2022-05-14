@@ -23,7 +23,7 @@ jobs:
           architecture: 'x64'
         env: 
           NAME: 'demo'
-      - run: |
+        run: |
           echo $NAME
           python3 demo.py
 
