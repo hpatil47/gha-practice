@@ -9,6 +9,12 @@ on:
           options: 
           - devl
           - prod
+        environment:
+          type: choice
+          description: action to take
+          options: 
+          - build-devl
+          - build-prod
 
 jobs:
   python-devl-build:
